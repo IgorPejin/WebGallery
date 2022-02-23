@@ -1,0 +1,81 @@
+*
+{
+    font-family: 'Pushster', cursive;
+}
+html
+{
+    width:100%
+}
+
+body
+{
+    background-color:azure;
+}
+
+.mycontainer
+{
+    height: 400px;
+}
+
+.formColor
+{
+    background-color: #7DBFF5;
+    border:solid 1px #121B24;
+    border-radius: 10%;
+    max-width: 330px;
+}
+.adminText
+{
+    color: beige;
+}
+.navbarColor
+{
+    background-color: #7DBFF5;
+    border-bottom: solid 2px black;
+}
+
+.greska
+{
+    border:solid 2px red;
+}
+.greskaUpload
+{
+    color:red;
+}
+
+#tabela {
+    border:1px solid #C0C0C0;
+    border-collapse:collapse;
+    width: 100%;
+    font-size: 8px;
+    overflow-y:scroll;
+    height:500px;
+    display:block;
+    margin-left: 20px;
+}
+#tabela caption {
+    caption-side:top;
+    text-align:center;
+}
+#tabela th {
+    border:1px solid #C0C0C0;
+    padding:5px;
+    background:#F0F0F0;
+}
+#tabela td {
+    border:1px solid #C0C0C0;
+    padding:5px;
+}
+
+.textArea
+{
+    overflow-y: scroll;
+    resize: none; 
+}
+
+/* #mainPanel
+{
+    
+} */
+
+
