@@ -81,5 +81,6 @@ app.use(history({ index: '/index.html' }));   // dist is ignored
 app.use(staticMdl);
 
 app.listen({ port: 8000 }, async () => {
+    console.log("Testing commit");
     await sequelize.authenticate();
 });
