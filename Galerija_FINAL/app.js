@@ -1,5 +1,5 @@
 const express = require('express');
-const { sequelize,Gallery } = require('./models');
+const { sequelize} = require('./models');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -22,9 +22,6 @@ function getCookies(req) {
 };
 
 function authToken(req, res, next) {
-
-
-
     const cookies = getCookies(req);
     const token = cookies['token'];
 
@@ -68,19 +65,14 @@ app.get('/admin/adminPanel', authToken, (req, res) => {
         res.sendFile('adminPanel.html', { root: './static/admin'  });
 });
 
-
 app.use(express.static(path.join(__dirname, 'static')));
-
 
 const staticMdl = express.static(path.join(__dirname, 'dist'));
 
 app.use(staticMdl);
-
 app.use(history({ index: '/index.html' }));   // dist is ignored
-
 app.use(staticMdl);
 
 app.listen({ port: 8000 }, async () => {
-    console.log("Testing commit");
     await sequelize.authenticate();
 });

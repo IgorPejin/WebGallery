@@ -10,7 +10,7 @@
             />
           </div>
           <div class="fields">
-            <button v-if="!message">Submit</button>
+            <button class="btn btn-outline-primary btn-light" v-if="!message">Submit</button>
           </div>
           <div class="message">
             <h5>{{message}}</h5>

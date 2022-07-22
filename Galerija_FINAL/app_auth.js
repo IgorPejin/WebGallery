@@ -10,7 +10,7 @@ const app = express();
 
 
 var corsOptions = {
-    origin: 'http://localhost:8000',
+    origin: ['http://localhost:8080','http://localhost:8000'],
     optionsSuccessStatus: 200
 }
 

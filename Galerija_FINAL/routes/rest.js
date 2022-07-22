@@ -14,7 +14,7 @@ const fileupload = require('express-fileupload')
 const route = express.Router();
 
 var corsOptions = {
-    origin: 'http://localhost:8000',
+    origin: ['http://localhost:8080','http://localhost:8000'],
     optionsSuccessStatus: 200
 }
 route.use(cors(corsOptions));
@@ -23,9 +23,7 @@ route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
 
 function authToken(req, res, next) {
-    console.log(req.method)
         const authHeader = req.headers['authorization'];
-        console.log(authHeader)
         const velikiCookie =authHeader.split(' ');
         const token=velikiCookie[1];
         
@@ -44,15 +42,12 @@ function authToken(req, res, next) {
          });
    
 }
+
 route.use(authToken);
 
 // USER REST API
-
 route.get('/profile',(req,res)=>
 {
-
-    console.log(req.user)
-
     Users.findAll({ where: { id: req.user.id } })
         .then( rows => res.json(rows))
         .catch( err => {
@@ -61,7 +56,6 @@ route.get('/profile',(req,res)=>
 });
 
 route.get('/users', (req, res) => {
-
     if(req.user.user_type==1)
     {
     Users.findAll()
@@ -110,9 +104,6 @@ route.put('/user/update/',(req,res)=>{
 });
 
 route.put('/user/update/:id',(req,res)=>{
-
-    console.log("cao");
-    console.log(req.body)
     if(req.user.user_type!=1)
         res.json({ msg: "You are not admin!"})
     
@@ -161,7 +152,6 @@ route.put('/user/update/:id',(req,res)=>{
 });
 
 route.delete('/user/delete/', (req, res) => {
-
     let deletionId=req.headers['deletion_id']
     Users.destroy({where:{id:deletionId}})
     .then( rows => res.json(rows))
@@ -169,7 +159,6 @@ route.delete('/user/delete/', (req, res) => {
                     res.status(404).json({ msg: "Greska sa bazom"}); 
                 });
 });
-
 
 route.delete('/user/delete/:id', (req, res) => {
 
@@ -208,33 +197,23 @@ route.get('/gallery', (req, res) => {
 });
 
 route.get('/userGalleries', (req, res) => {
-
-    console.log(req.user.id)
-
     Gallery.findAll({ where: { user_id: req.user.id } })
     .then( rows => res.json(rows))
     .catch( err => {
         res.status(400).json({ msg: ""}); 
     });
-    
 });
 
 route.get('/getGalleryImages/:id', (req, res) => {
-    
     let galleryId=req.headers['galleryid']
-
     Photo.findAll({ where: { gallery_id: galleryId } })
     .then( rows => res.json(rows))
     .catch( err => {
         res.status(400).json({ msg: ""}); 
     });
-
-
-    
 });
 
 route.get('/gallery/fillUsers', (req, res) => {
-
     Users.findAll({ where: { user_type: req.headers['user-type'] } })
         .then( rows => res.json(rows))
         .catch( err => {
@@ -242,13 +221,9 @@ route.get('/gallery/fillUsers', (req, res) => {
             console.log(err);
             res.status(400).json({ msg: ""+error}); 
         });
-
 });
 
 route.post('/gallery/create', (req, res) => {
-
-    console.log("heloo")
-    console.log(req.body)
     const obj = {
         name: req.body.name,
         desc: req.body.desc,
@@ -297,7 +272,6 @@ route.post('/gallery/create/thumbnailPath', (req, res) => {
 
     let image=req.files.fajl;
 
-
     fsXtra.emptyDirSync(putanja3)
     image.mv(putanja,(error)=>{
         if(error){
@@ -309,7 +283,6 @@ route.post('/gallery/create/thumbnailPath', (req, res) => {
 });
 
 route.get('/gallery/getThumbnail', (req, res) => {
-    
     let putanjaThumb=req.headers['putanja']
         fs.readFile(putanjaThumb, function(err, data) {
             if (err)
@@ -321,16 +294,12 @@ route.get('/gallery/getThumbnail', (req, res) => {
 
 
 route.put('/gallery/setThumbnail', (req, res) => {
-    
     if(req.user.user_type==2)
         return;
-
-
     const data = {
         galleryId:req.body.galleryId,
         thumbnail_ref:req.body.thumbnail_ref,
     };
-
     const schema = Joi.object({
         thumbnail_ref: Joi.string()
     })
@@ -352,10 +321,6 @@ route.put('/gallery/setThumbnail', (req, res) => {
             console.log(err);
         });
     }
-    
-    // const fileName=req.files.fajl.name
-    // let putanja=path.join(__dirname,'../..')+'/storage/'+fileName
-    // res.json({path:putanja})
 });
 
 
@@ -391,8 +356,6 @@ route.put('/gallery/update/:id',(req,res)=>{
 
     if(req.user.user_type==2)
         return;
-
-
     const data = {
         gallery_id:req.body.gallery_id,
         name: req.body.name,
@@ -511,8 +474,6 @@ route.delete('/privileges/delete/:id', (req, res) => {
 
     if(req.user.user_type!=1)
         return;
-
-
     let deletionId=req.headers['deletion_id']
 
     Privileges.destroy({where:{id:deletionId}})
@@ -524,7 +485,6 @@ route.delete('/privileges/delete/:id', (req, res) => {
 
 
 //PHOTOS REST API
-
 route.get('/searchApi',(req,res)=>{
     let query=req.headers['query']
 
@@ -585,10 +545,7 @@ route.put('/photos/update/:id',(req,res)=>{
 });
 
 route.delete('/photos/delete/:id', (req, res) => {
-
-
     let deletionId=req.headers['deletion_id']
-
     if(isNaN(deletionId))
          res.json({msg:"Greska! nije broj"})
 
@@ -621,8 +578,6 @@ route.delete('/photos/delete/:id', (req, res) => {
 });
 
 route.post('/photos/upload/', (req, res) => {
-    
-    console.log(req.files.file)
     let image=req.files.file
     let imageName=image.name
     let imageType=image.mimetype
@@ -670,10 +625,7 @@ route.post('/photos/upload/', (req, res) => {
 
 
 route.post('/photos/upload/photoPath', (req, res) => {
-
-    console.log(req.files)
-    console.log(req.body)
-    
+ 
     let fileName=req.files.fajl.name
    
     let galleryId=req.headers['galleryid'];
@@ -793,7 +745,6 @@ route.get('/gallery/getImageThumbnail', (req, res) => {
 
 route.get('/gallery/getOriginal', (req, res) => {
     
-    console.log("USAOOOOOOOOOOOO")
     let showId=req.headers['showid']
 
     Photo.findAll({ where: { id: showId } })

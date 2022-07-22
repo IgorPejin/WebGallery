@@ -1,5 +1,5 @@
 const express = require('express');
-const { sequelize, Users } = require('./models');
+const { sequelize} = require('./models');
 const rest = require('./routes/rest');
 const cors = require('cors');
 require('dotenv').config();
@@ -9,7 +9,7 @@ const app = express();
 app.use('/', rest);
 
 var corsOptions = {
-    origin: 'http://localhost:8000',
+    origin: ['http://localhost:8080','http://localhost:8000'],
     optionsSuccessStatus: 200
 }
 

@@ -1,15 +1,18 @@
 <template>
   <div id="app" >
      
-    <b-container class="ctrans mt-5" fluid="md">
+    <b-container class="ctrans mt-5 mb-2" fluid="md">
+      <b-container class="wrapper">
         <b-row class="b-flex">
-                <input type="button" @click="addNewImage(id)" class="mt-1 ml-3" value="New image" />
-                <input type="button" @click="galleryDeletion()" class="mt-1 ml-3" value="Delete gallery" />
+            <div class="options">
+                <b-card @click="addNewImage(id)" class="ml-4 mr-1 cardCreateOption transparent text-light" value="New image">New Image</b-card>
+                <b-card @click="galleryDeletion()" class="cardCreateOption transparent text-light" value="Delete gallery">Delete Gallery</b-card>
                 <span class="ml-2 text-white">Total images: {{imagesData.length}} </span>
+            </div>
               </b-row>
            <div class="deck ">
             <b-card  @click="gotoSlika(image.id)"  
-             class="transparent cards mt-3  text-light" 
+             class="transparent cards mt-1 mr-1 text-light" 
              v-for="image in imagesData" :key="image.id" :title="image.name">
              <ImageCard class="mb-2" :putanja="image.thumbnail_ref"/>
                <b-card-text >
@@ -19,6 +22,7 @@
                </b-card-text>
             </b-card>
            </div>
+      </b-container>
     </b-container>
   </div>
 </template>
@@ -85,13 +89,25 @@
     overflow-x: scroll;
     overflow-y: hidden;
 }
+.options
+{
+  display: inline-flex;
+  flex-direction: row;
+  margin-right: 10px;
+  white-space:nowrap;
+}
+.cardCreateOption
+{
+   width:200px;
+   height:4em;
+} 
 .cards {
     display:inline-flex;
     width:300px;
     height:450px;
     transition: 0.3s;
 }
-.cards:hover
+.cards:hover,.cardCreateOption:hover
 {
    background-color: rgba(255,255,255,0.5);
 }

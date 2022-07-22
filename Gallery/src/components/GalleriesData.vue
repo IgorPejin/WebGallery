@@ -4,12 +4,12 @@
          <b-container class="wrapper">
              <b-row class="m-0">
                  <div class="options">
-                  <b-card @click="galleryCreation()" class="transparent cardCreateOption text-light">New gallery</b-card> 
-                  <b-card class="transparent cardCreateOption text-light">Delete gallery</b-card> 
+                  <b-card @click="galleryCreation()" class="transparent cardCreateOption text-light mr-1">New gallery</b-card> 
+                  <span class="ml-2 text-white">Total Galleries: {{userGalleries.length}} </span>
                  </div>
             </b-row>
            <div class="deck">
-            <b-card  @click="gotoGallery(gallery.id)" :title="gallery.name"  class="transparent cards  text-light" v-for="gallery in userGalleries" :key="gallery.id" >
+            <b-card  @click="gotoGallery(gallery.id)" :title="gallery.name"  class="transparent cards mt-1 mr-1 text-light" v-for="gallery in userGalleries" :key="gallery.id" >
               <b-card-body>
               <ImageCard class="mb-5" :putanja="gallery.thumbnail_ref"/>
                <b-card-text >
@@ -94,7 +94,6 @@
   flex-direction: row;
   margin-right: 10px;
   white-space:nowrap;
-  
 }
 .cardCreateOption
 {
