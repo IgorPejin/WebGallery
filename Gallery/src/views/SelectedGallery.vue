@@ -5,7 +5,7 @@
       <b-container class="wrapper">
         <b-row class="b-flex">
             <div class="options">
-                <b-card @click="addNewImage(id)" class="ml-4 mr-1 cardCreateOption transparent text-light" value="New image">New Image</b-card>
+                <b-card @click="addNewImage(id)" class="mr-1 ml-3 cardCreateOption transparent text-light" value="New image">New Image</b-card>
                 <b-card @click="galleryDeletion()" class="cardCreateOption transparent text-light" value="Delete gallery">Delete Gallery</b-card>
                 <span class="ml-2 text-white">Total images: {{imagesData.length}} </span>
             </div>

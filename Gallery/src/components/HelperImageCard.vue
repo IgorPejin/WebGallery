@@ -1,11 +1,12 @@
 <template>
+  <div class="pictureWrapper">
     <div id="slike">
-
-      <b-container class="ctrans mt-5 mb-2" fluid="md">
+      <b-container class="ctrans mt-5 mb-2 toLeft" fluid="md">
          <b-container class="wrapper">
              <b-card-img :src="'data:image/png;base64,' + image"></b-card-img>
          </b-container>
     </b-container>
+    </div>
     </div>
 </template>
 <script>
@@ -52,11 +53,14 @@ export default {
   width: 100%;
 }
 .wrapper {
-    width:100%;
-    height: 100%;
+    width:50%;
+    height: 50%;
     overflow: hidden;
-    margin-top: 20px;
+    margin-left: 3em;
 }
-
+.pictureWrapper
+{
+  height: 100vh;
+}
 
 </style>
