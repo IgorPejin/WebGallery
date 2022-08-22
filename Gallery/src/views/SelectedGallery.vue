@@ -14,12 +14,14 @@
             <b-card  @click="gotoSlika(image.id)"  
              class="transparent cards mt-1 mr-1 text-light" 
              v-for="image in imagesData" :key="image.id" :title="image.name">
+             <b-card-body>
              <ImageCard class="mb-2" :putanja="image.thumbnail_ref"/>
                <b-card-text >
                   Tags: {{image.tags}}
                   <br>
                   Size: {{image.original_size}}
                </b-card-text>
+               </b-card-body>
             </b-card>
            </div>
       </b-container>
@@ -95,6 +97,13 @@
   flex-direction: row;
   margin-right: 10px;
   white-space:nowrap;
+}
+.card-body
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .cardCreateOption
 {

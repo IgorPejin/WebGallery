@@ -1,11 +1,14 @@
 <template>
   <div class="pictureWrapper">
-    <div id="slike">
-      <b-container class="ctrans mt-5 mb-2 toLeft" fluid="md">
-         <b-container class="wrapper">
+    <div id="slika">
+      <b-container class="ctrans mt-5 mb-2" fluid="md">
+         <div class="wrapper">
              <b-card-img :src="'data:image/png;base64,' + image"></b-card-img>
-         </b-container>
-    </b-container>
+         </div>
+            <div class="data">
+              {{imageDataRet[0]}}
+            </div>
+      </b-container>
     </div>
     </div>
 </template>
@@ -18,7 +21,8 @@ export default {
     },
     computed: {
       ...mapState([
-        'imageThumbnail'
+        'imageThumbnail',
+        'imageDataRet'
       ])
     },
     data()
@@ -46,17 +50,23 @@ export default {
 
 
 <style scoped>
+.ctrans
+{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 
 .card-img
 {
-  height: 100%;
-  width: 100%;
+  max-width: 60%;
+  max-height: 60%;
+  margin-top: 2em;
 }
 .wrapper {
     width:50%;
     height: 50%;
-    overflow: hidden;
-    margin-left: 3em;
+    margin-left: 0.1em;
 }
 .pictureWrapper
 {

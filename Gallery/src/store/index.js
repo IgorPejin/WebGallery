@@ -16,7 +16,8 @@ export default new Vuex.Store({
     thumbnail: null,
     imageThumbnail: null,
     searchImages: [],
-    query:''
+    query:'',
+    imageDataRet:[]
   },
 
   mutations: {
@@ -72,6 +73,14 @@ export default new Vuex.Store({
         state.searchImages.push(image)
       else
         state.stop4=1
+    },
+    pushDataForImage(state,data)
+    {
+      state.imageDataRet.push(data);
+    },
+    clearDataForImage(state)
+    {
+      state.imageDataRet=[]
     }
   },
 
@@ -155,7 +164,6 @@ export default new Vuex.Store({
     },
     getImageOriginal({commit,state},id)
     {
-      console.log("hello")
       return new Promise( (resolve, reject) => {
       fetch('http://localhost:7000/gallery/getOriginal',{
         method: 'GET',
@@ -166,6 +174,7 @@ export default new Vuex.Store({
       })
       .then(res=>res.json())
       .then(data=>{
+          console.log(data)
           function _arrayBufferToBase64( data ) {
             var binary = '';
             var bytes = new Uint8Array( data.data );
@@ -175,8 +184,11 @@ export default new Vuex.Store({
             }
             return window.btoa( binary );
           }
-          const converted=_arrayBufferToBase64(data)
+          const converted=_arrayBufferToBase64(data.data)
           commit('thumbnail',converted)
+          commit('clearDataForImage')
+          for(let key in data)
+             commit('pushDataForImage',data[key])
           resolve(converted)
       });
     });

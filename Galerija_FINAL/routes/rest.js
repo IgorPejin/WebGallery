@@ -752,14 +752,22 @@ route.get('/gallery/getOriginal', (req, res) => {
             let prom = JSON.stringify(rows)
             let slice=prom.slice(1,-1)
             let prom2=JSON.parse(slice)
-            console.log(prom2.original_ref)
             fs.readFile('./'+ prom2.original_ref, function(err, data) {
                 if (err)
                     res.status(404).json({msg:"Error"})
                 else
                 {
-                    console.log(data)
-                    res.json(data)
+                    const returnObj= {
+                        name:prom2.name,
+                        tags:prom2.tags,
+                        original_size:prom2.original_size,
+                        original_ref:prom2.original_ref,
+                        thumbnail_ref:prom2.thumbnail_ref,
+                        extension:prom2.extension,
+                        gallery_id: prom2.gallery_id,
+                        data:data
+                    }
+                    res.json(returnObj)
                 }
         })  
      });
