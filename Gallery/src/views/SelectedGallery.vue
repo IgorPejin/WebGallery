@@ -118,7 +118,7 @@
 }
 .cards:hover,.cardCreateOption:hover
 {
-   background-color: rgba(255,255,255,0.5);
+   background-color: rgba(161, 159, 159, 0.441);
 }
 
 </style>

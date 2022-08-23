@@ -2,19 +2,20 @@
     <div>
         <div class="file">
           <form @submit.prevent="onSubmit" enctype="multipart/form-data">
-          <div class="fields">
-            <label> Upload File</label><br/>
-            <input type="file"
-            ref="file"
-            @change="onSelect"
-            />
-          </div>
-          <div class="fields">
-            <button class="btn btn-outline-primary btn-light" v-if="!message">Submit</button>
-          </div>
-          <div class="message">
-            <h5>{{message}}</h5>
-          </div>
+            <div class="fields">
+              <label> Upload File</label><br/>
+              <input type="file"
+              ref="file"
+              class="mt-2 mb-2"
+              @change="onSelect"
+              />
+            </div>
+            <div class="fields mt-2">
+              <button class="btn btn-outline-primary btn-light" v-if="!message">Submit</button>
+            </div>
+            <div class="message">
+              <h5>{{message}}</h5>
+            </div>
           </form>
         </div>
     </div>

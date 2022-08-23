@@ -100,6 +100,10 @@
 </script>
 
 <style>
+  *
+  {
+    font-weight: bold;
+  }
   body
   {
     background: url("../public/sun.jpg") no-repeat center center fixed; 

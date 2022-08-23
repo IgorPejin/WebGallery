@@ -36,7 +36,7 @@
 <style scoped>
 .transparent , .ctrans
 {
-  background-color: rgb(255, 255, 255,0.2);
+  background-color: rgba(161, 159, 159, 0.441);
 }
 .wrapper {
     width:100%;
@@ -58,6 +58,6 @@
 }
 .cards:hover
 {
-   background-color: rgba(255,255,255,0.5);
+   background-color: rgba(161, 159, 159, 0.441);
 }
 </style>

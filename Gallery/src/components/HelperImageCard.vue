@@ -5,8 +5,23 @@
          <div class="wrapper">
              <b-card-img :src="'data:image/png;base64,' + image"></b-card-img>
          </div>
-            <div class="data">
-              {{imageDataRet[0]}}
+            <div class="data ml-5">
+              <b-col>
+                <div>
+                  <b-row >
+                    <p> Image Name: {{imageDataRet[0]}}</p>
+                  </b-row>
+                  <!-- <b-row >
+                    <p> Tags: {{imageDataRet[1]}}</p>
+                  </b-row> -->
+                  <b-row >
+                    <p> Image Size: {{imageDataRet[2]}}</p>
+                  </b-row>
+                  <b-row >
+                    <p> Image Format: {{imageDataRet[5]}}</p>
+                  </b-row>
+                </div>
+              </b-col>
             </div>
       </b-container>
     </div>
@@ -71,6 +86,14 @@ export default {
 .pictureWrapper
 {
   height: 100vh;
+}
+.data
+{
+background: rgba(229, 231, 231, 0.5);
+padding: 2em;
+border-radius: 10%;
+font-size: 1.25rem;
+font-weight: bold;
 }
 
 </style>
