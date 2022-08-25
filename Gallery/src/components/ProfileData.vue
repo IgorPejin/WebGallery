@@ -13,8 +13,8 @@
                rows="2"
                required
               max-rows="2" no-resize></b-form-textarea>
-            <input type="button" class="mt-2" value="Update" @click="validation()">
-            <input type="button" class="ml-3 mt-2" value="Delete" @click="deleteButton()">
+            <input type="button" class="mt-2 btn btn-outline-primary btn-light" value="Update" @click="validation()">
+            <input type="button" class="ml-3 mt-2 btn btn-outline-primary btn-light" value="Delete" @click="deleteButton()">
            </b-form-group>
         </b-col>
       </b-container>

@@ -3,10 +3,10 @@
         <div class="file">
           <form @submit.prevent="onSubmit" enctype="multipart/form-data">
             <div class="fields">
-              <label> Upload File</label><br/>
+              <label>Upload File</label><br/>
               <input type="file"
               ref="file"
-              class="mt-2 mb-2"
+              class="mt-2 mb-2 btn"
               @change="onSelect"
               />
             </div>
